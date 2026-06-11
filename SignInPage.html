@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Desi Safari | Log In</title>
+    
+    <style>
+        :root {
+            --bg-dark: #080808;
+            --card-bg: #151515;
+            --accent-ochre: #A0522D; 
+            --text-main: #FFFFFF;
+            --text-dim: #999999;
+            --border: #2a2a2a;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: var(--bg-dark);
+            font-family: 'Times New Roman', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            width: 95%;
+            max-width: 520px; /* slightly reduced for better balance */
+            padding: 60px 60px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9);
+            text-align: center;
+        }
+
+        .login-card img {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            color: white;
+        }
+
+        .subtext {
+            font-family: system-ui, sans-serif;
+            color: var(--text-dim);
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+        }
+
+        .subtext a {
+            color: #FF4500;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* FORM AREA */
+        .form-area {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-box {
+            width: 100%;
+            max-width: 420px; /* key fix */
+            padding: 18px;
+            background: #1e1e1e;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .forgot-link {
+            width: 100%;
+            max-width: 420px;
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 30px;
+        }
+
+        .btn-email {
+            width: 100%;
+            max-width: 420px; /* SAME width as input */
+            padding: 18px;
+            background-color: var(--accent-ochre);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-email:hover {
+            background-color: #8B4513;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="login-card">
+
+    <img src="Logo.jpg" width="100" onclick="redirect()">
+
+    <h2>LOG IN</h2>
+
+    <div class="subtext">
+        Don't have an account? <a href="signup.html">Sign Up</a>
+    </div>
+
+    <div class="form-area">
+
+        <input type="email" id="email" class="input-box" placeholder="Email Address" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onkeyup = "checkEmail()">
+    
+      <p id = "alertEmail" style = "margin-top: 0px; color:#8B4513; font-family: Arial, Helvetica, sans-serif;"></p>
+        <input type="password" id="password" class="input-box" placeholder="Password">
+
+        <a href="#" class="forgot-link">Forgot Email?</a>
+
+        <button class="btn-email" id="loginBtn">Login</button>
+
+    </div>
+
+</div>
+
+<script>
+
+// same logic as before
+function checkEmail(){
+      let email = document.getElementById("email");
+      let alertText = document.getElementById("alertEmail")
+    if (email.checkValidity()) {
+
+      alertText.innerHTML = "";
+
+    } else {
+
+        alertText.innerHTML = "Enter valid email address";
+
+    }
+}
+function getUsers() {
+    return JSON.parse(localStorage.getItem("users")) || {};
+}
+function redirect(){
+    window.location = "Main2.html"
+    mouse
+}
+let current = localStorage.getItem("currentUser");
+let users = getUsers();
+
+if (current && users[current]) {
+    window.location.href = "Main2.html";
+}
+
+document.getElementById("loginBtn").addEventListener("click", () => {
+
+    let email = document.getElementById("email").value.trim();
+    if (!email) return alert("Enter email");
+
+    let users = getUsers();
+
+    if (!users[email]) {
+        alert("User not found. Please Sign Up.");
+        return;
+    }
+
+    let password = document.getElementById("password").value;
+    if (!password) return alert("Enter password");
+    
+    if (password === users[email].password) {
+        localStorage.setItem("currentUser", email);
+        window.location.href = "Main2.html";
+    } else {
+        alert("Incorrect password");
+    }
+
+});
+
+</script>
+
+</body>
+</html>

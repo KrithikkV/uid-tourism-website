@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Desi Safari</title>
+    <link rel="stylesheet" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\ScrollBar.css">
+    <link rel="stylesheet" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\TopMenuBar.css">
+    <link rel = "stylesheet" href = "E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\MapIcon.css">
+    <link rel="stylesheet" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\gradient.css">
+    <style>
+        body {
+            background-color: #0B0B0B;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sticky Image Section */
+        .humayun {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0B0B0B;
+        }
+
+        .humayun img {
+            width: 90%;
+            height: 75vh;
+            object-fit: cover;
+            border-radius: 40px;
+        }
+
+        /* Overlapping Content */
+        .overlay {
+            position: relative;
+            z-index: 10;
+            background-color: #0B0B0B;
+            text-align: center;
+        }
+
+        .title {
+            position: relative;
+            display: inline-block;
+            margin-top: -30px;
+            font-family: "Times New Roman", serif;
+            font-size: 13vw;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #A0522D;
+        }
+
+        /* Content Section */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+            color: #333;
+        }
+
+        .content h2 {
+            font-size: 2.5rem;
+            border-bottom: 2px solid #8B4513;
+            display: inline-block;
+            padding-bottom: 10px;
+            font-family: "Times New Roman", serif;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .spacer {
+            height: 800px;
+        }
+    </style>
+</head>
+
+<body>
+<iframe src="header.html" 
+        style="width:100%; height:120px; border:none;" 
+        name="header_frame">
+</iframe>
+    <!-- Sticky Image -->
+    <div class="humayun">
+        <img src="pic.jpeg" alt="Humayun's Tomb">
+    </div>
+
+    <!-- Overlay Section -->
+    <div class="overlay">
+
+        <div class="title">
+            DESI SAFARI
+        </div>
+
+        <div class="content">
+            <h2>The Heritage Journey</h2>
+            <p>Ready to walk through the roots and routes of India?</p>
+        </div>
+
+        <div class="map-section">
+            <!-- <h2>🗺️ Click Your State</h2> -->
+
+            <img src="Map.png" width="1000" height="1200" usemap="#india" alt="India Map">
+
+            <map name="india">
+
+                <!-- KERALA -->
+                <area class="kerala" title="Kerala" shape="poly" coords="239,920,275,970,295,1035,330,1070,332,1042,323,1002,297,960,276,941,243,921" href="States\Kerala\Main.html"  alt="Kerala">
+
+                <!-- TAMIL NADU -->
+                <area class="tamilnadu" title="Tamil Nadu" shape="poly" coords="295,958,347,947,346,923,377,921,437,892,421,944,420,998,372,1035,334,1070,338,1026,315,985" href="States\Tamil Nadu\Main.html"  alt="Tamil Nadu">
+
+                <!-- KARNATAKA -->
+                <area class="karnataka" title="Karnataka" shape="poly" coords="220,851,233,811,293,776,340,746,337,814,313,845,321,895,359,883,370,915,342,919,303,956,244,917" href="States/Karnataka/Main.html"  alt="Karnataka">
+
+                <!-- ANDHRA PRADESH -->
+                <area class="andhrapradesh" title="Andhra Pradesh" shape="poly" coords="325,880,325,823,388,820,402,796,464,783,477,753,524,729,574,711,543,740,445,814,433,880,378,913,358,882" href="States/Andhra Pradesh/Main.html"  alt="Andhra Pradesh">
+
+                <!-- GOA -->
+                <area class="goa" title="Goa" shape="poly" coords="202,828,224,827,220,853" href="States\Goa\goa_main.html"  alt="Goa">
+
+                <!-- TELANGANA -->
+                <area class="telangana" title="Telangana" shape="poly" coords="337,813,380,819,402,794,466,775,455,746,422,729,405,699,366,692,339,750" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\States\Telengana\Main.html"  alt="Telangana">
+
+                <!-- MAHARASHTRA -->
+                <area class="maharashtra" title="Maharashtra" shape="poly" coords="201,822,173,687,221,646,434,641,430,723,370,693,317,748" href="States/Maharashtra/mah_main.html"  alt="Maharashtra">
+
+                <!-- GUJARAT -->
+                <area class="gujarat" title="Gujarat" shape="poly" coords="177,679,207,659,203,627,224,598,119,544,24,568,48,592,93,593,52,616,103,666,145,650,159,617" href="States\Gujarat\guj_main.html"  alt="Gujarat">
+
+                <!-- CHHATTISGARH -->
+                <area class="chhattisgarh" title="Chhattisgarh" shape="poly" coords="463,748,437,727,451,704,437,640,475,602,487,565,535,559,552,587,511,639,484,676,494,721" href="States\Chattisgarh\chattisgarh_main.html"  alt="Chhattisgarh">
+
+                <!-- ODISHA -->
+                <area class="odisha" title="Odisha" shape="poly" coords="474,748,496,718,493,685,508,645,544,606,613,608,665,614,624,672,541,707" href="States/Odisha/Main.html"  alt="Odisha">
+
+                <!-- MADHYA PRADESH -->
+                <area class="madhyapradesh" title="Madhya Pradesh" shape="poly" coords="290,647,435,636,470,567,504,535,374,518,386,552,354,546,379,479,329,486,300,514,333,527,287,561,263,562,276,541,239,541,237,579,225,616" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\States\Madhyapradesh\mp_main.html"  alt="Madhya Pradesh">
+
+                <!-- RAJASTHAN -->
+                <area class="rajasthan" title="Rajasthan" shape="poly" coords="114,439,216,367,237,370,238,389,262,390,268,408,279,433,311,423,311,442,339,465,328,477,298,511,327,525,285,553,266,532,241,533,250,573,227,590,179,548,117,535,66,465,96,432" href="e:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\States\Rajasthan\raj_main.html"  alt="Rajasthan">
+
+                <!-- PUDUCHERRY -->
+                <area class="puducherry" title="Puducherry" shape="poly" coords="489,941,634,941,636,969,488,970" href="States\Pondicherry\Main.html"  alt="Puducherry">
+
+                <!-- LAKSHADWEEP -->
+                <area class="lakshadweep" title="Lakshadweep" shape="poly" coords="87,945,166,905,248,1029,167,1074" href="States/Lakshadweep/Main.html"  alt="Lakshadweep">
+
+                <!-- ANDAMAN AND NICOBAR -->
+                <area class="andamanandnicobar" title="Andaman & Nicobar" shape="poly" coords="816,855,912,857,876,976,907,1087,868,1090,808,984" href="States\Andhaman&Nicobar\Main.html"  alt="Andaman & Nicobar">
+
+                <!-- DAMAN AND DIU -->
+                <area class="damananddiu" title="Daman & Diu" shape="poly" coords="27,708,110,706,113,757,27,756" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\States\Daman&Diu\daman_main.html"  alt="Daman & Diu">
+
+                <!-- JHARKHAND -->
+                <area class="jharkhand" title="Jharkhand" shape="poly" coords="530,537,594,537,638,528,662,504,657,540,612,563,637,594,608,589,586,606,580,592,553,594,541,563" href="States/Jharkhand/Main.html" alt="Jharkhand">
+
+                <!-- UTTAR PRADESH -->
+                <area class="uttarpradesh" title="Uttar Pradesh" shape="poly" coords="333,363,391,402,392,423,338,422,344,469,389,475,380,512,471,514,519,548,546,462" href="States\Uttar Pradesh\Main.html"  alt="Uttar Pradesh">
+
+                <!-- DELHI -->
+                <area class="delhi" title="Delhi" shape="poly" coords="336,377,381,378,382,391,338,389,329,399,323,385" href="States\Delhi\Main.html"  alt="Delhi">
+
+                <!-- HARYANA -->
+                <area class="haryana" title="Haryana" shape="poly" coords="258,385,313,345,333,356,314,385,308,407,331,419,331,430,285,428" href="States\Haryana\Main.html"  alt="Haryana">
+
+                <!-- PUNJAB -->
+                <area class="punjab" title="Punjab" shape="poly" coords="215,364,236,334,242,307,272,295,285,323,308,350,257,373" href="States\Punjab\Main.html"  alt="Punjab">
+
+                <!-- UTTARAKHAND -->
+                <area class="uttarakhand" title="Uttarakhand" shape="poly" coords="344,365,350,326,398,335,434,355,409,398,376,385" href="States\Uttarakhand\Main.html"  alt="Uttarakhand">
+
+                <!-- HIMACHAL PRADESH -->
+                <area class="himachalpradesh" title="Himachal Pradesh" shape="poly" coords="273,297,300,270,357,284,370,325,344,325,337,352,304,325" href="States\Himachal Pradesh\Main.html"  alt="Himachal Pradesh">
+
+                <!-- JAMMU AND KASHMIR -->
+                <area class="jammuandkashmir" title="Jammu & Kashmir" shape="poly" coords="225,215,294,266,276,276,260,295,208,270,201,233" href="States\Jammu and Kashmir\Main.html"  alt="Jammu & Kashmir">
+
+                <!-- LADAKH -->
+                <area class="ladakh" title="Ladakh" shape="poly" coords="177,178,297,264,385,282,370,238,406,189,329,194,256,141,209,150" href="States\Ladakh\Main.html"  alt="Ladakh">
+
+                <!-- BIHAR -->
+                <area class="bihar" title="Bihar" shape="poly" coords="539,442,603,466,658,469,661,502,618,526,533,536,526,511,564,497" href="States/Bihar/Main.html"  alt="Bihar">
+
+                <!-- WEST BENGAL -->
+                <area class="westbengal" title="West Bengal" shape="poly" coords="665,474,694,478,698,546,712,606,651,607,613,569,668,531" href="States/WestBengal/Main.html" alt="West Bengal">
+
+                <!-- ASSAM -->
+                <area class="assam" title="Assam" shape="poly" coords="743,444,863,450,930,417,935,437,889,470,873,509,857,536,839,536,854,501,834,475,755,482" href="States/Assam/Main.html"s  alt="Assam">
+
+                <!-- MEGHALAYA -->
+                <area class="meghalaya" title="Meghalaya" shape="poly" coords="756,487,784,477,805,484,834,478,842,507,759,503" href="States\Meghalaya\Main.html"  alt="Meghalaya">
+
+                <!-- TRIPURA -->
+                <area class="tripura" title="Tripura" shape="poly" coords="816,544,824,559,805,593,790,587,786,567" href="States\Tripura\Main.html"  alt="Tripura">
+
+                <!-- MIZORAM -->
+                <area class="mizoram" title="Mizoram" shape="poly" coords="826,573,857,567,860,596,845,633,832,609" href="States\Mizoram\Main.html"  alt="Mizoram">
+
+                <!-- ARUNACHAL PRADESH -->
+                <area class="arunachalpradesh" title="Arunachal Pradesh" shape="poly" coords="800,439,851,418,871,397,911,391,925,416,949,424,948,452,921,453,914,436,876,448,849,473,802,467" href="States\ArunachalPradesh\Main.html"  alt="Arunachal Pradesh">
+
+                <!-- MANIPUR -->
+                <area class="manipur" title="Manipur" shape="poly" coords="844,549,859,533,888,519,892,546,871,572" href="States\Manipur\Main.html" alt="Manipur">
+
+                <!-- NAGALAND -->
+                <area class="nagaland" title="Nagaland" shape="poly" coords="913,466,898,493,891,516,854,526,876,489" href="States\Nagaland\Main.html"  alt="Nagaland">
+
+                <!-- SIKKIM -->
+                <area class="sikkim" title="Sikkim" shape="poly" coords="562,366,655,366,663,398,687,426,711,427,718,459,687,461,617,399,562,396,563,365" href="States\Sikkim\Main.html"  alt="Sikkim">
+
+            </map>
+
+            <div style="height: 800px;"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>

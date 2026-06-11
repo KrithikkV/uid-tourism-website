@@ -1,0 +1,56 @@
+.header-top {
+    width: 100%;
+    background-color: var(--bg-black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 5%;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(160, 82, 45, 0.3);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.logo-area img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid #A0522D;
+}
+
+.logo-text {
+    color: #A0522D;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.slogan{
+    color: #A0522D;
+    font-size: 1.0rem;
+    
+}
+
+.nav-menu {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #A0522D; /* Matching Theme Orange */
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.nav-menu a:hover {
+    opacity: 0.7;
+}

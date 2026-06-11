@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign Up</title>
+
+<style>
+:root {
+    --bg-dark: #080808;
+    --card-bg: #151515;
+    --accent-ochre: #A0522D; 
+    --border: #2a2a2a;
+    --text-dim: #999999;
+}
+
+body {
+  background: var(--bg-dark);
+  color: white;
+  font-family: 'Times New Roman', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* CARD */
+.card {
+  background: var(--card-bg);
+  padding: 70px 80px;
+  border-radius: 32px;
+  width: 95%;
+  max-width: 650px;
+  box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+}
+
+/* HEADING LEFT ALIGNED */
+.card h2 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+/* INPUTS */
+input {
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 18px;
+  background: #1e1e1e;
+  border: 1px solid var(--border);
+  color: white;
+  border-radius: 14px;
+  font-size: 1.05rem;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 20px;
+  background: var(--accent-ochre);
+  border: none;
+  color: white;
+  border-radius: 14px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: #8B4513;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+  <h2>Sign Up</h2>
+
+  <input type="email" id="email" placeholder="Email" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onkeyup="checkEmail()">
+  <p id = "alertEmail" style = "margin-top: 0px; color:#8B4513; font-family: Arial, Helvetica, sans-serif;"></p>
+  <input type="text" id="username" placeholder="Username" oninput = "checkLength()">
+  <p id = "alertLength" style = "margin-top: 0px; color:#8B4513; font-family: Arial, Helvetica, sans-serif;"></p>
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="signup()">Create Account</button>
+
+</div>
+
+<script>
+
+function getUsers() {
+  return JSON.parse(localStorage.getItem("users")) || {};
+}
+
+function saveUsers(users) {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+function signup() {
+
+  let email = document.getElementById("email").value.trim();
+  let username = document.getElementById("username").value.trim();
+  let password = document.getElementById("password").value;
+
+  if (!email || !username || !password) {
+    alert("Fill all fields");
+    return;
+  }
+
+  let users = getUsers();
+
+  if (users[email]) {
+    alert("User already exists");
+    return;
+  }
+
+  users[email] = {
+    username: username,
+    password: password
+  };
+
+  saveUsers(users);
+
+  alert("Account created!");
+
+  window.location.href = "SignInPage.html";
+}
+function checkLength(){
+  var name = document.getElementById("username").value;
+  var alertText = document.getElementById("alertLength")
+  if(name.length <= 3){
+    alertText.innerHTML = "Username must have a minimum 4 characters";
+  }else{
+    alertText.innerHTML = "";
+  }
+}
+function checkEmail(){
+      let email = document.getElementById("email");
+      let alertText = document.getElementById("alertEmail")
+    if (email.checkValidity()) {
+
+      alertText.innerHTML = "";
+
+    } else {
+
+        alertText.innerHTML = "Enter valid email address";
+
+    }
+}
+
+</script>
+
+</body>
+</html>

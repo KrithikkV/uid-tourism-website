@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Favorites</title>
+
+<style>
+
+/* ===== BODY (FIXED) ===== */
+body {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ===== HEADER FIX ===== */
+iframe {
+  display: block;
+  width: 100%;
+  height: 120px;
+  border: none;
+}
+
+/* ===== WRAPPER ===== */
+.wrapper {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== TITLE ===== */
+.title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #e5e5e5;
+  font-size: 1.8rem;
+  font-weight: 700;
+  justify-content: center;
+  margin: 30px 0 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #8B4513;
+}
+
+/* ===== STATE SECTION ===== */
+.state-section {
+  margin-bottom: 50px;
+}
+
+.state-title {
+  color: #e5e5e5;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-left: 4px solid #8B4513;
+  padding-left: 10px;
+}
+
+/* ===== GRID FIX ===== */
+.state-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  gap: 30px;
+  justify-content: center;
+}
+
+/* ===== STAR ===== */
+.star {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  color: gold;
+}
+
+/* ===== CARD ===== */
+.card {
+  width: 300px;
+  height: 250px;
+  perspective: 1000px;
+  position: relative;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.card-front {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.card-back {
+  background: #D2B48C;
+  color: black;
+  transform: rotateY(180deg);
+}
+
+.card-back a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* ===== BACKGROUNDS ===== */
+
+/* ===== Jammu & Kashmir ===== */
+.card-front.Srinagar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Jammu and Kashmir/Srinagar.jpg"); background-size: cover; }
+.card-front.Gulmarg { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Jammu and Kashmir/Gulmarg.jpg"); background-size: cover; }
+.card-front.Pahalgam { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Jammu and Kashmir/Pahalgam.jpg"); background-size: cover; }
+.card-front.Sonmarg { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Jammu and Kashmir/Sonmarg.jpg"); background-size: cover; }
+.card-front.VaishnoDevi { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Jammu and Kashmir/VaishnoDevi.jpg"); background-size: cover; }
+.card-front.Patnitop { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Jammu and Kashmir/Patnitop.jpg"); background-size: cover; }
+
+/* ===== Ladakh ===== */
+.card-front.LehLadakh { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Ladakh/LehLadakh.jpg"); background-size: cover; }
+.card-front.PanagongLake { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Ladakh/PanagongLake.jpg"); background-size: cover; }
+.card-front.NubraValley { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Ladakh/NubraValley.jpg"); background-size: cover; }
+.card-front.TsoMoririLake { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Ladakh/TsoMoririLake.jpg"); background-size: cover; }
+.card-front.ZanskarValley { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Ladakh/ZanskarValley.jpg"); background-size: cover; }
+.card-front.HemisMonastery { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Ladakh/HemisMonastery.jpg"); background-size: cover; }
+
+/* ===== Himachal Pradesh ===== */
+.card-front.Shimla { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Himachal Pradesh/Shimla.jpg"); background-size: cover; }
+.card-front.Manali { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Himachal Pradesh/Manali.jpg"); background-size: cover; }
+.card-front.Dharamshala { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Himachal Pradesh/Dharamshala.jpg"); background-size: cover; }
+.card-front.Kullu { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Himachal Pradesh/Kullu.jpg"); background-size: cover; }
+.card-front.SpitiValley { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Himachal Pradesh/SpitiValley.jpg"); background-size: cover; }
+.card-front.Dalhousie { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Himachal Pradesh/Dalhousie.jpg"); background-size: cover; }
+
+/* ===== Punjab ===== */
+.card-front.Amritsar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Punjab/Amritsar.jpg"); background-size: cover; }
+.card-front.Wagah { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Punjab/Wagah.jpg"); background-size: cover; }
+.card-front.Chandigarh { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Punjab/Chandigarh.jpg"); background-size: cover; }
+.card-front.Patiala { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Punjab/Patiala.jpg"); background-size: cover; }
+.card-front.Ludhiana { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Punjab/Ludhiana.jpg"); background-size: cover; }
+
+/* ===== Delhi ===== */
+.card-front.RedFort { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Delhi/RedFort.jpg"); background-size: cover; }
+.card-front.IndiaGate { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Delhi/IndiaGate.jpg"); background-size: cover; }
+.card-front.QutubMinar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Delhi/QutubMinar.jpg"); background-size: cover; }
+.card-front.LotusTemple { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Delhi/LotusTemple.jpg"); background-size: cover; }
+.card-front.ChandiChowk { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Delhi/ChandiChowk.jpg"); background-size: cover; }
+
+/* ================= ALL REMAINING CARD FRONTS ================= */
+
+/* ===== Haryana ===== */
+.card-front.Gurugram { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Haryana/Gurugram.jpg"); background-size: cover; }
+.card-front.Kurukshetra { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Haryana/Kurukshetra.jpg"); background-size: cover; }
+.card-front.MorniHills { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Haryana/MorniHills.jpg"); background-size: cover; }
+.card-front.SultanpurNationalPark { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Haryana/SultanpurNationalPark.jpg"); background-size: cover; }
+.card-front.Panipat { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Haryana/Panipat.jpg"); background-size: cover; }
+
+/* ===== Uttar Pradesh ===== */
+.card-front.Agra { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttar Pradesh/Agra.jpg"); background-size: cover; }
+.card-front.Ayodhya { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttar Pradesh/Ayodhya.jpg"); background-size: cover; }
+.card-front.Lucknow { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttar Pradesh/Lucknow.jpg"); background-size: cover; }
+.card-front.Mathura { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttar Pradesh/Mathura.jpg"); background-size: cover; }
+.card-front.Prayagraj { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttar Pradesh/Prayagraj.jpg"); background-size: cover; }
+.card-front.Varanasi { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttar Pradesh/Varanasi.jpg"); background-size: cover; }
+
+/* ===== Uttarakhand ===== */
+.card-front.Nainital { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttarakhand/Nainital.jpg"); background-size: cover; }
+.card-front.Mussoorie { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttarakhand/Mussoorie.jpg"); background-size: cover; }
+.card-front.Rishikesh { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttarakhand/Rishikesh.jpg"); background-size: cover; }
+.card-front.Haridwar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttarakhand/Haridwar.jpg"); background-size: cover; }
+.card-front.Auli { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttarakhand/Auli.jpg"); background-size: cover; }
+.card-front.JimCorbett { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Uttarakhand/JimCorbett.jpg"); background-size: cover; }
+
+/* ===== West Bengal ===== */
+.card-front.UpasanaGriha { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/WestBengal/UpasanaGriha.jpg"); background-size: cover; }
+.card-front.Darjeeling { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/WestBengal/Darjeeling.jpg"); background-size: cover; }
+.card-front.DighaBeach { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/WestBengal/DighaBeach.jpg"); background-size: cover; }
+.card-front.Kolkata { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/WestBengal/Kolkata.jpg"); background-size: cover; }
+.card-front.SundarbansPark { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/WestBengal/SundarbansPark.jpg"); background-size: cover; }
+
+/* ===== Odisha ===== */
+.card-front.BhubaneshwarTemple { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Odisha/BhubaneshwarTemple.jpg"); background-size: cover; }
+.card-front.PuriJagannath { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Odisha/PuriJagannath.jpg"); background-size: cover; }
+.card-front.ChilikaLake { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Odisha/ChilikaLake.jpg"); background-size: cover; }
+.card-front.DharingbadiVillage { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Odisha/DharingbadiVillage.jpg"); background-size: cover; }
+.card-front.KonarkSunTemple { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Odisha/KonarkSunTemple.jpg"); background-size: cover; }
+
+/* ===== Sikkim ===== */
+.card-front.Gangtok { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Sikkim/Gangtok.jpg"); background-size: cover; }
+.card-front.NathulaPass { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Sikkim/NathulaPass.jpg"); background-size: cover; }
+.card-front.Pelling { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Sikkim/Pelling.jpg"); background-size: cover; }
+.card-front.TsomgoLake { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Sikkim/TsomgoLake.jpg"); background-size: cover; }
+.card-front.YumthangValley { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Sikkim/YumthangValley.jpg"); background-size: cover; }
+
+/* ===== Tripura ===== */
+.card-front.JampuiHills { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tripura/JampuiHills.jpg"); background-size: cover; }
+.card-front.NeerMahal { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tripura/NeerMahal.jpg"); background-size: cover; }
+.card-front.UjayantaPalace { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tripura/UjayantaPalace.jpg"); background-size: cover; }
+.card-front.Unakoti { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tripura/Unakoti.jpg"); background-size: cover; }
+
+/* ===== Jharkhand ===== */
+.card-front.HundruFalls { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Jharkhand/HundruFalls.jpg"); background-size: cover; }
+.card-front.NaulakhaTemple { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Jharkhand/NaulakhaTemple.jpg"); background-size: cover; }
+.card-front.PatratuValley { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Jharkhand/PatratuValley.jpg"); background-size: cover; }
+.card-front.Netarhat { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Jharkhand/Netarhat.jpg"); background-size: cover; }
+
+/* ===== Manipur ===== */
+.card-front.ImaKeithal { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Manipur/ImaKeithal.jpg"); background-size: cover; }
+.card-front.INAMemorial { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Manipur/INAMemorial.jpg"); background-size: cover; }
+.card-front.LoktakLake { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Manipur/LoktakLake.jpg"); background-size: cover; }
+.card-front.KeibulLamjao { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Manipur/KeibulLamjao.jpg"); background-size: cover; }
+
+/* ===== Meghalaya ===== */
+.card-front.Cherrapunji { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Meghalaya/Cherrapunji.jpg"); background-size: cover; }
+.card-front.Dawki { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Meghalaya/Dawki.jpg"); background-size: cover; }
+.card-front.MawlynnongVillage { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Meghalaya/MawlynnongVillage.jpg"); background-size: cover; }
+.card-front.Shillong { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Meghalaya/Shillong.jpg"); background-size: cover; }
+
+/* ===== Mizoram ===== */
+.card-front.Aizawl { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Mizoram/Aizawl.jpg"); background-size: cover; }
+.card-front.Hmuifang { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Mizoram/Hmuifang.jpg"); background-size: cover; }
+.card-front.Phawngpui { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Mizoram/Phawngpui.jpg"); background-size: cover; }
+.card-front.Champai { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Mizoram/Champai.jpg"); background-size: cover; }
+.card-front.Reiek { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Mizoram/Reiek.jpg"); background-size: cover; }
+
+/* ===== Nagaland ===== */
+.card-front.KhonomaVillage { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Nagaland/KhonomaVillage.jpg"); background-size: cover; }
+.card-front.Kohima { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Nagaland/Kohima.jpg"); background-size: cover; }
+.card-front.NagaHeritageVillage { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Nagaland/NagaHeritageVillage.jpg"); background-size: cover; }
+.card-front.MonVillage { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Nagaland/MonVillage.jpg"); background-size: cover; }
+
+/* ===== Arunachal Pradesh ===== */
+.card-front.Mechuka { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/ArunachalPradesh/Mechuka.jpg"); background-size: cover; }
+.card-front.NamdaphaNationalPark { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/ArunachalPradesh/NamdaphaNationalPark.jpg"); background-size: cover; }
+.card-front.Tawang { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/ArunachalPradesh/Tawang.jpg"); background-size: cover; }
+.card-front.ZiroValley { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/ArunachalPradesh/ZiroValley.jpg"); background-size: cover; }
+
+/* ===== Assam ===== */
+.card-front.KamkhyaTemple { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Assam/KamkhyaTemple.jpg"); background-size: cover; }
+.card-front.Kaziranga { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Assam/Kaziranga.jpg"); background-size: cover; }
+.card-front.MajuliIsland { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Assam/MajuliIsland.jpg"); background-size: cover; }
+.card-front.ManasNationalPark { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Assam/ManasNationalPark.jpg"); background-size: cover; }
+.card-front.Sivasagr { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Assam/Sivasagr.jpg"); background-size: cover; }
+
+/* ===== Bihar ===== */
+.card-front.BarabarCaves { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Bihar/BarabarCaves.jpg"); background-size: cover; }
+.card-front.Bodhgaya { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Bihar/Bodhgaya.jpg"); background-size: cover; }
+.card-front.Nalanda { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Bihar/Nalanda.jpg"); background-size: cover; }
+.card-front.Patna { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Bihar/Patna.jpg"); background-size: cover; }
+.card-front.Rajgir { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Bihar/Rajgir.jpg"); background-size: cover; }
+
+/* ===== Tamil Nadu ===== */
+.card-front.Chennai { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Chennai.jpg"); background-size: cover; }
+.card-front.Madurai { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Madurai.jpg"); background-size: cover; }
+.card-front.Kodaikanal { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Kodaikanal.jpg"); background-size: cover; }
+.card-front.Ooty { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Ooty.jpg"); background-size: cover; }
+.card-front.Rameswaram { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Rameswaram.jpg"); background-size: cover; }
+.card-front.Thanjavur { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Thanjavur.jpg"); background-size: cover; }
+
+/* ===== Kerala ===== */
+.card-front.Alleppey { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Alleppey.jpg"); background-size: cover; }
+.card-front.Kochi { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Kochi.jpg"); background-size: cover; }
+.card-front.Kovalam { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Kovalam.jpg"); background-size: cover; }
+.card-front.Munnar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Munnar.jpg"); background-size: cover; }
+.card-front.Thekkady { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Thekkady.jpg"); background-size: cover; }
+.card-front.Wayanad { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Wayanad.jpg"); background-size: cover; }
+
+/* ===== Meghalaya ===== */
+.card-front.Cherrapunji { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Meghalaya/Cherrapunji.jpg"); background-size: cover; }
+.card-front.Dawki { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Meghalaya/Dawki.jpg"); background-size: cover; }
+.card-front.MawlynnongVillage { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Meghalaya/MawlynnongVillage.jpg"); background-size: cover; }
+.card-front.Shillong { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Meghalaya/Shillong.jpg"); background-size: cover; }
+
+/* ===== Mizoram ===== */
+.card-front.Aizawl { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Mizoram/Aizawl.jpg"); background-size: cover; }
+.card-front.Hmuifang { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Mizoram/Hmuifang.jpg"); background-size: cover; }
+.card-front.Phawngpui { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Mizoram/Phawngpui.jpg"); background-size: cover; }
+.card-front.Champai { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Mizoram/Champai.jpg"); background-size: cover; }
+.card-front.Reiek { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Mizoram/Reiek.jpg"); background-size: cover; }
+
+/* ===== Nagaland ===== */
+.card-front.KhonomaVillage { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Nagaland/KhonomaVillage.jpg"); background-size: cover; }
+.card-front.Kohima { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Nagaland/Kohima.jpg"); background-size: cover; }
+.card-front.NagaHeritageVillage { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Nagaland/NagaHeritageVillage.jpg"); background-size: cover; }
+.card-front.MonVillage { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Nagaland/MonVillage.jpg"); background-size: cover; }
+
+/* ===== Arunachal Pradesh ===== */
+.card-front.Mechuka { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/ArunachalPradesh/Mechuka.jpg"); background-size: cover; }
+.card-front.NamdaphaNationalPark { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/ArunachalPradesh/NamdaphaNationalPark.jpg"); background-size: cover; }
+.card-front.Tawang { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/ArunachalPradesh/Tawang.jpg"); background-size: cover; }
+.card-front.ZiroValley { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/ArunachalPradesh/ZiroValley.jpg"); background-size: cover; }
+
+/* ===== Assam ===== */
+.card-front.KamkhyaTemple { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Assam/KamkhyaTemple.jpg"); background-size: cover; }
+.card-front.Kaziranga { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Assam/Kaziranga.jpg"); background-size: cover; }
+.card-front.MajuliIsland { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Assam/MajuliIsland.jpg"); background-size: cover; }
+.card-front.ManasNationalPark { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Assam/ManasNationalPark.jpg"); background-size: cover; }
+.card-front.Sivasagr { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Assam/Sivasagr.jpg"); background-size: cover; }
+
+/* ===== Bihar ===== */
+.card-front.BarabarCaves { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Bihar/BarabarCaves.jpg"); background-size: cover; }
+.card-front.Bodhgaya { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Bihar/Bodhgaya.jpg"); background-size: cover; }
+.card-front.Nalanda { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Bihar/Nalanda.jpg"); background-size: cover; }
+.card-front.Patna { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Bihar/Patna.jpg"); background-size: cover; }
+.card-front.Rajgir { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Bihar/Rajgir.jpg"); background-size: cover; }
+
+/* ===== Tamil Nadu ===== */
+.card-front.Chennai { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Chennai.jpg"); background-size: cover; }
+.card-front.Madurai { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Madurai.jpg"); background-size: cover; }
+.card-front.Kodaikanal { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Kodaikanal.jpg"); background-size: cover; }
+.card-front.Ooty { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Ooty.jpg"); background-size: cover; }
+.card-front.Rameswaram { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Rameswaram.jpg"); background-size: cover; }
+.card-front.Thanjavur { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Tamil Nadu/Thanjavur.jpg"); background-size: cover; }
+
+/* ===== Kerala ===== */
+.card-front.Alleppey { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Alleppey.jpg"); background-size: cover; }
+.card-front.Kochi { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Kochi.jpg"); background-size: cover; }
+.card-front.Kovalam { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Kovalam.jpg"); background-size: cover; }
+.card-front.Munnar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Munnar.jpg"); background-size: cover; }
+.card-front.Thekkady { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Thekkady.jpg"); background-size: cover; }
+.card-front.Wayanad { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Kerala/Wayanad.jpg"); background-size: cover; }
+
+/* ===== Karnataka ===== */
+.card-front.Bangalore { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Karnataka/Bangalore.jpg"); background-size: cover; }
+.card-front.Chikmagalur { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Karnataka/Chikmagalur.jpg"); background-size: cover; }
+.card-front.Coorg { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Karnataka/Coorg.jpg"); background-size: cover; }
+.card-front.Gokarna { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Karnataka/Gokarna.jpg"); background-size: cover; }
+.card-front.Hampi { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Karnataka/Hampi.jpg"); background-size: cover; }
+.card-front.Mysore { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Karnataka/Mysore.jpg"); background-size: cover; }
+
+/* ===== Andhra Pradesh ===== */
+.card-front.Araku { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhra Pradesh/Araku.jpg"); background-size: cover; }
+.card-front.BorraCaves { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhra Pradesh/BorraCaves.jpg"); background-size: cover; }
+.card-front.Lambasingi { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhra Pradesh/Lambasingi.jpg"); background-size: cover; }
+.card-front.Tirupati { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhra Pradesh/Tirupati.jpg"); background-size: cover; }
+.card-front.Vijayawada { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhra Pradesh/Vijayawada.jpg"); background-size: cover; }
+.card-front.Vizag { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhra Pradesh/Vizag.jpg"); background-size: cover; }
+
+/* ===== Telangana ===== */
+.card-front.Bhadrachalam { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Telengana/Bhadrachalam.jpg"); background-size: cover; }
+.card-front.BogathaWaterfall { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Telengana/BogathaWaterfall.jpg"); background-size: cover; }
+.card-front.Hyderabad { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Telengana/Hyderabad.jpg"); background-size: cover; }
+.card-front.Medak { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Telengana/Medak.jpg"); background-size: cover; }
+.card-front.NagarjunaSagar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Telengana/NagarjunaSagar.jpg"); background-size: cover; }
+.card-front.Warangal { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Telengana/Warangal.jpg"); background-size: cover; }
+
+/* ===== Pondicherry ===== */
+.card-front.Auroville { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Pondicherry/Auroville.jpg"); background-size: cover; }
+.card-front.Chunnambar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Pondicherry/Chunnambar.jpg"); background-size: cover; }
+.card-front.FrenchQuarter { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Pondicherry/FrenchQuarter.jpg"); background-size: cover; }
+.card-front.Paradise { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Pondicherry/Paradise.jpg"); background-size: cover; }
+.card-front.PromenadeBeach { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Pondicherry/PromenadeBeach.jpg"); background-size: cover; }
+
+/* ===== Andaman & Nicobar ===== */
+.card-front.Baratang { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhaman&Nicobar/Baratang.jpg"); background-size: cover; }
+.card-front.Havelock { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhaman&Nicobar/Havelock.jpg"); background-size: cover; }
+.card-front.NeilIsland { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhaman&Nicobar/NeilIsland.jpg"); background-size: cover; }
+.card-front.PortBlair { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhaman&Nicobar/PortBlair.jpg"); background-size: cover; }
+.card-front.Ross { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Andhaman&Nicobar/Ross.jpg"); background-size: cover; }
+
+/* ===== Lakshadweep ===== */
+.card-front.Agatti { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Lakshadweep/Agatti.jpg"); background-size: cover; }
+.card-front.Bangaram { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Lakshadweep/Bangaram.jpg"); background-size: cover; }
+.card-front.Kalpeni { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Lakshadweep/Kalpeni.jpg"); background-size: cover; }
+.card-front.Kavaratti { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Lakshadweep/Kavaratti.jpg"); background-size: cover; }
+.card-front.Minicoy { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Lakshadweep/Minicoy.jpg"); background-size: cover; }
+
+/* ===== Rajasthan ===== */
+.card-front.jaipur { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Rajasthan/jaipur3.jpg"); background-size: cover; }
+.card-front.udaipur { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Rajasthan/udaipur4.jpg"); background-size: cover; }
+.card-front.jaiselmar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Rajasthan/jaisalmer.jpg"); background-size: cover; }
+.card-front.jodhpur { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Rajasthan/jodhpur2.jpg"); background-size: cover; }
+.card-front.rathambore { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Rajasthan/rathambore1.jpg"); background-size: cover; }
+
+/* ===== Maharashtra ===== */
+.card-front.ajanta { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Maharashtra/ajanta1.jpg"); background-size: cover; }
+.card-front.ellora { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Maharashtra/Ellora.jpg"); background-size: cover; }
+.card-front.raigad { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Maharashtra/raigadfort.jpg"); background-size: cover; }
+.card-front.mahabaleswar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Maharashtra/Mahabaleswar.jpg"); background-size: cover; }
+.card-front.lonavala { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Maharashtra/Lonavla.jpg"); background-size: cover; }
+
+/* ===== Daman & Diu ===== */
+.card-front.nagoa { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Daman&Diu/daman2.jpg"); background-size: cover; }
+.card-front.diufort { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Daman&Diu/diufort1.jpg"); background-size: cover; }
+.card-front.naida { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Daman&Diu/naida1.jpg"); background-size: cover; }
+.card-front.jampore { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Daman&Diu/jampore1.jpg"); background-size: cover; }
+.card-front.motidaman { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Daman&Diu/motidaman1.jpg"); background-size: cover; }
+
+/* ===== Gujarat ===== */
+.card-front.adalaj { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Gujarat/adalaj1.jpg"); background-size: cover; }
+.card-front.saputara { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Gujarat/saputara1.jpg"); background-size: cover; }
+.card-front.gir { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Gujarat/gir3.jpg"); background-size: cover; }
+.card-front.tithal { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Gujarat/tithal1.jpg"); background-size: cover; }
+.card-front.ran { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Gujarat/rann2.jpg"); background-size: cover; }
+
+/* ===== Goa ===== */
+.card-front.dudhsagar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Goa/dudhsagar4.jpg"); background-size: cover; }
+.card-front.divar { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Goa/divar2.jpg"); background-size: cover; }
+.card-front.cathedral { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Goa/cathedral2.jpg"); background-size: cover; }
+.card-front.vagator { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Goa/vagator2.jpg"); background-size: cover; }
+.card-front.anjuna { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Goa/anjuna2.jpg"); background-size: cover; }
+
+/* ===== Madhya Pradesh ===== */
+.card-front.pachmarhi { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Madhyapradesh/pachmarhi2.jpg"); background-size: cover; }
+.card-front.bhedaghat { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Madhyapradesh/bhedaghat2.jpg"); background-size: cover; }
+.card-front.Bandhavgarh { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Madhyapradesh/Bandhavgarh2.jpg"); background-size: cover; }
+.card-front.ujjain { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Madhyapradesh/ujjain1.jpg"); background-size: cover; }
+.card-front.sanchi { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Madhyapradesh/sanchistupa2.jpg"); background-size: cover; }
+
+/* ===== Chhattisgarh ===== */
+.card-front.chitrakote { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Chattisgarh/chitrakote1.jpg"); background-size: cover; }
+.card-front.bhoramdeo { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Chattisgarh/bhoramdeo3.jpg"); background-size: cover; }
+.card-front.kailash { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Chattisgarh/kailash3.jpg"); background-size: cover; }
+.card-front.rajim { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Chattisgarh/rajim1.jpg"); background-size: cover; }
+.card-front.mainpat { background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("States/Chattisgarh/mainpat1.jpg"); background-size: cover; }
+
+
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<iframe src="header.html"></iframe>
+
+<div class="wrapper">
+
+<div class="title">
+  <span style="color: gold; font-size: 1.6rem;">⭐</span>
+  <span>Your Favorite Places</span>
+</div>
+
+<div id="favoritesContainer"></div>
+
+</div>
+
+<script>
+// ===== USER =====
+const currentUser = localStorage.getItem("currentUser");
+if (!currentUser) {
+  alert("Please login first");
+  window.location.href = "SignInPage.html";
+}
+
+// ===== KEY =====
+const key = "myStars_" + currentUser;
+
+// ===== LOAD =====
+const saved = JSON.parse(localStorage.getItem(key)) || [];
+
+// ===== DATA (ADD ALL STATES AS NEEDED) =====
+const data = {
+// Jammu & Kashmir
+"Srinagar": { name: "Srinagar", class: "Srinagar", link: "States/Jammu and Kashmir/Srinagar.html", state: "Jammu and Kashmir" },
+"Gulmarg": { name: "Gulmarg", class: "Gulmarg", link: "States/Jammu and Kashmir/Gulmarg.html", state: "Jammu and Kashmir" },
+"Pahalgam": { name: "Pahalgam", class: "Pahalgam", link: "States/Jammu and Kashmir/Pahalgam.html", state: "Jammu and Kashmir" },
+"Sonmarg": { name: "Sonmarg", class: "Sonmarg", link: "States/Jammu and Kashmir/Sonmarg.html", state: "Jammu and Kashmir" },
+"VaishnoDevi": { name: "Vaishno Devi", class: "VaishnoDevi", link: "States/Jammu and Kashmir/VaishnoDevi.html", state: "Jammu and Kashmir" },
+"Patnitop": { name: "Patnitop", class: "Patnitop", link: "States/Jammu and Kashmir/Patnitop.html", state: "Jammu and Kashmir" },
+
+// Ladakh
+"LehLadakh": { name: "Leh Ladakh", class: "LehLadakh", link: "States/Ladakh/LehLadakh.html", state: "Ladakh" },
+"PanagongLake": { name: "Pangong Lake", class: "PanagongLake", link: "States/Ladakh/PanagongLake.html", state: "Ladakh" },
+"NubraValley": { name: "Nubra Valley", class: "NubraValley", link: "States/Ladakh/NubraValley.html", state: "Ladakh" },
+"TsoMoririLake": { name: "Tso Moriri Lake", class: "TsoMoririLake", link: "States/Ladakh/TsoMoririLake.html", state: "Ladakh" },
+"ZanskarValley": { name: "Zanskar Valley", class: "ZanskarValley", link: "States/Ladakh/ZanskarValley.html", state: "Ladakh" },
+"HemisMonastery": { name: "Hemis Monastery", class: "HemisMonastery", link: "States/Ladakh/HemisMonastery.html", state: "Ladakh" },
+
+// Himachal Pradesh
+"Shimla": { name: "Shimla", class: "Shimla", link: "States/Himachal Pradesh/Shimla.html", state: "Himachal Pradesh" },
+"Manali": { name: "Manali", class: "Manali", link: "States/Himachal Pradesh/Manali.html", state: "Himachal Pradesh" },
+"Dharamshala": { name: "Dharamshala", class: "Dharamshala", link: "States/Himachal Pradesh/Dharamshala.html", state: "Himachal Pradesh" },
+"Kullu": { name: "Kullu", class: "Kullu", link: "States/Himachal Pradesh/Kullu.html", state: "Himachal Pradesh" },
+"SpitiValley": { name: "Spiti Valley", class: "SpitiValley", link: "States/Himachal Pradesh/SpitiValley.html", state: "Himachal Pradesh" },
+"Dalhousie": { name: "Dalhousie", class: "Dalhousie", link: "States/Himachal Pradesh/Dalhousie.html", state: "Himachal Pradesh" },
+
+// Punjab
+"Amritsar": { name: "Amritsar", class: "Amritsar", link: "States/Punjab/Amritsar.html", state: "Punjab" },
+"Wagah": { name: "Wagah Border", class: "Wagah", link: "States/Punjab/Wagah.html", state: "Punjab" },
+"Chandigarh": { name: "Chandigarh", class: "Chandigarh", link: "States/Punjab/Chandigarh.html", state: "Punjab" },
+"Patiala": { name: "Patiala", class: "Patiala", link: "States/Punjab/Patiala.html", state: "Punjab" },
+"Ludhiana": { name: "Ludhiana", class: "Ludhiana", link: "States/Punjab/Ludhiana.html", state: "Punjab" },
+
+// Delhi
+"RedFort": { name: "Red Fort", class: "RedFort", link: "States/Delhi/RedFort.html", state: "Delhi" },
+"IndiaGate": { name: "India Gate", class: "IndiaGate", link: "States/Delhi/IndiaGate.html", state: "Delhi" },
+"QutubMinar": { name: "Qutub Minar", class: "QutubMinar", link: "States/Delhi/QutubMinar.html", state: "Delhi" },
+"LotusTemple": { name: "Lotus Temple", class: "LotusTemple", link: "States/Delhi/LotusTemple.html", state: "Delhi" },
+"ChandiChowk": { name: "Chandni Chowk", class: "ChandiChowk", link: "States/Delhi/ChandiChowk.html", state: "Delhi" },
+// ================= ALL STATES DATA =================
+
+// Haryana
+"Gurugram": { name: "Gurugram", class: "Gurugram", link: "States/Haryana/Gurugram.html", state: "Haryana" },
+"Kurukshetra": { name: "Kurukshetra", class: "Kurukshetra", link: "States/Haryana/Kurukshetra.html", state: "Haryana" },
+"MorniHills": { name: "Morni Hills", class: "MorniHills", link: "States/Haryana/MorniHills.html", state: "Haryana" },
+"SultanpurNationalPark": { name: "Sultanpur National Park", class: "SultanpurNationalPark", link: "States/Haryana/SultanpurNationalPark.html", state: "Haryana" },
+"Panipat": { name: "Panipat", class: "Panipat", link: "States/Haryana/Panipat.html", state: "Haryana" },
+
+// Uttar Pradesh
+"Agra": { name: "Agra", class: "Agra", link: "States/Uttar Pradesh/Agra.html", state: "Uttar Pradesh" },
+"Ayodhya": { name: "Ayodhya", class: "Ayodhya", link: "States/Uttar Pradesh/Ayodhya.html", state: "Uttar Pradesh" },
+"Lucknow": { name: "Lucknow", class: "Lucknow", link: "States/Uttar Pradesh/Lucknow.html", state: "Uttar Pradesh" },
+"Mathura": { name: "Mathura", class: "Mathura", link: "States/Uttar Pradesh/Mathura.html", state: "Uttar Pradesh" },
+"Prayagraj": { name: "Prayagraj", class: "Prayagraj", link: "States/Uttar Pradesh/Prayagraj.html", state: "Uttar Pradesh" },
+"Varanasi": { name: "Varanasi", class: "Varanasi", link: "States/Uttar Pradesh/Varanasi.html", state: "Uttar Pradesh" },
+
+// Uttarakhand
+"Nainital": { name: "Nainital", class: "Nainital", link: "States/Uttarakhand/Nainital.html", state: "Uttarakhand" },
+"Mussoorie": { name: "Mussoorie", class: "Mussoorie", link: "States/Uttarakhand/Mussoorie.html", state: "Uttarakhand" },
+"Rishikesh": { name: "Rishikesh", class: "Rishikesh", link: "States/Uttarakhand/Rishikesh.html", state: "Uttarakhand" },
+"Haridwar": { name: "Haridwar", class: "Haridwar", link: "States/Uttarakhand/Haridwar.html", state: "Uttarakhand" },
+"Auli": { name: "Auli", class: "Auli", link: "States/Uttarakhand/Auli.html", state: "Uttarakhand" },
+"JimCorbett": { name: "Jim Corbett", class: "JimCorbett", link: "States/Uttarakhand/JimCorbett.html", state: "Uttarakhand" },
+
+// West Bengal
+"UpasanaGriha": { name: "Upasana Griha", class: "UpasanaGriha", link: "States/WestBengal/UpasanaGriha.html", state: "West Bengal" },
+"Darjeeling": { name: "Darjeeling", class: "Darjeeling", link: "States/WestBengal/Darjeeling.html", state: "West Bengal" },
+"DighaBeach": { name: "Digha Beach", class: "DighaBeach", link: "States/WestBengal/DighaBeach.html", state: "West Bengal" },
+"Kolkata": { name: "Kolkata", class: "Kolkata", link: "States/WestBengal/Kolkata.html", state: "West Bengal" },
+"SundarbansPark": { name: "Sundarbans Park", class: "SundarbansPark", link: "States/WestBengal/SundarbansPark.html", state: "West Bengal" },
+
+// Odisha
+"BhubaneshwarTemple": { name: "Bhubaneshwar Temple", class: "BhubaneshwarTemple", link: "States/Odisha/BhubaneshwarTemple.html", state: "Odisha" },
+"PuriJagannath": { name: "Puri Jagannath", class: "PuriJagannath", link: "States/Odisha/PuriJagannath.html", state: "Odisha" },
+"ChilikaLake": { name: "Chilika Lake", class: "ChilikaLake", link: "States/Odisha/ChilikaLake.html", state: "Odisha" },
+"DharingbadiVillage": { name: "Dharingbadi Village", class: "DharingbadiVillage", link: "States/Odisha/DharingbadiVillage.html", state: "Odisha" },
+"KonarkSunTemple": { name: "Konark Sun Temple", class: "KonarkSunTemple", link: "States/Odisha/KonarkSunTemple.html", state: "Odisha" },
+
+// Sikkim
+"Gangtok": { name: "Gangtok", class: "Gangtok", link: "States/Sikkim/Gangtok.html", state: "Sikkim" },
+"NathulaPass": { name: "Nathula Pass", class: "NathulaPass", link: "States/Sikkim/NathulaPass.html", state: "Sikkim" },
+"Pelling": { name: "Pelling", class: "Pelling", link: "States/Sikkim/Pelling.html", state: "Sikkim" },
+"TsomgoLake": { name: "Tsomgo Lake", class: "TsomgoLake", link: "States/Sikkim/TsomgoLake.html", state: "Sikkim" },
+"YumthangValley": { name: "Yumthang Valley", class: "YumthangValley", link: "States/Sikkim/YumthangValley.html", state: "Sikkim" },
+
+// Tripura
+"JampuiHills": { name: "Jampui Hills", class: "JampuiHills", link: "States/Tripura/JampuiHills.html", state: "Tripura" },
+"NeerMahal": { name: "Neer Mahal", class: "NeerMahal", link: "States/Tripura/NeerMahal.html", state: "Tripura" },
+"UjayantaPalace": { name: "Ujayanta Palace", class: "UjayantaPalace", link: "States/Tripura/UjayantaPalace.html", state: "Tripura" },
+"Unakoti": { name: "Unakoti", class: "Unakoti", link: "States/Tripura/Unakoti.html", state: "Tripura" },
+
+// Jharkhand
+"HundruFalls": { name: "Hundru Falls", class: "HundruFalls", link: "States/Jharkhand/HundruFalls.html", state: "Jharkhand" },
+"NaulakhaTemple": { name: "Naulakha Temple", class: "NaulakhaTemple", link: "States/Jharkhand/NaulakhaTemple.html", state: "Jharkhand" },
+"PatratuValley": { name: "Patratu Valley", class: "PatratuValley", link: "States/Jharkhand/PatratuValley.html", state: "Jharkhand" },
+"Netarhat": { name: "Netarhat", class: "Netarhat", link: "States/Jharkhand/Netarhat.html", state: "Jharkhand" },
+
+// Manipur
+"ImaKeithal": { name: "Ima Keithal", class: "ImaKeithal", link: "States/Manipur/ImaKeithal.html", state: "Manipur" },
+"INAMemorial": { name: "INA Memorial", class: "INAMemorial", link: "States/Manipur/INAMemorial.html", state: "Manipur" },
+"LoktakLake": { name: "Loktak Lake", class: "LoktakLake", link: "States/Manipur/LoktakLake.html", state: "Manipur" },
+"KeibulLamjao": { name: "Keibul Lamjao", class: "KeibulLamjao", link: "States/Manipur/KeibulLamjao.html", state: "Manipur" },
+
+// Meghalaya
+"Cherrapunji": { name: "Cherrapunji", class: "Cherrapunji", link: "States/Meghalaya/Cherrapunji.html", state: "Meghalaya" },
+"Dawki": { name: "Dawki", class: "Dawki", link: "States/Meghalaya/Dawki.html", state: "Meghalaya" },
+"MawlynnongVillage": { name: "Mawlynnong Village", class: "MawlynnongVillage", link: "States/Meghalaya/MawlynnongVillage.html", state: "Meghalaya" },
+"Shillong": { name: "Shillong", class: "Shillong", link: "States/Meghalaya/Shillong.html", state: "Meghalaya" },
+
+// Mizoram
+"Aizawl": { name: "Aizawl", class: "Aizawl", link: "States/Mizoram/Aizawl.html", state: "Mizoram" },
+"Hmuifang": { name: "Hmuifang", class: "Hmuifang", link: "States/Mizoram/Hmuifang.html", state: "Mizoram" },
+"Phawngpui": { name: "Phawngpui", class: "Phawngpui", link: "States/Mizoram/Phawngpui.html", state: "Mizoram" },
+"Champai": { name: "Champai", class: "Champai", link: "States/Mizoram/Champai.html", state: "Mizoram" },
+"Reiek": { name: "Reiek", class: "Reiek", link: "States/Mizoram/Reiek.html", state: "Mizoram" },
+
+// Nagaland
+"KhonomaVillage": { name: "Khonoma Village", class: "KhonomaVillage", link: "States/Nagaland/KhonomaVillage.html", state: "Nagaland" },
+"Kohima": { name: "Kohima", class: "Kohima", link: "States/Nagaland/Kohima.html", state: "Nagaland" },
+"NagaHeritageVillage": { name: "Naga Heritage Village", class: "NagaHeritageVillage", link: "States/Nagaland/NagaHeritageVillage.html", state: "Nagaland" },
+"MonVillage": { name: "Mon Village", class: "MonVillage", link: "States/Nagaland/MonVillage.html", state: "Nagaland" },
+
+// Arunachal Pradesh
+"Mechuka": { name: "Mechuka", class: "Mechuka", link: "States/ArunachalPradesh/Mechuka.html", state: "Arunachal Pradesh" },
+"NamdaphaNationalPark": { name: "Namdapha National Park", class: "NamdaphaNationalPark", link: "States/ArunachalPradesh/NamdaphaNationalPark.html", state: "Arunachal Pradesh" },
+"Tawang": { name: "Tawang", class: "Tawang", link: "States/ArunachalPradesh/Tawang.html", state: "Arunachal Pradesh" },
+"ZiroValley": { name: "Ziro Valley", class: "ZiroValley", link: "States/ArunachalPradesh/ZiroValley.html", state: "Arunachal Pradesh" },
+
+// Assam
+"KamkhyaTemple": { name: "Kamakhya Temple", class: "KamkhyaTemple", link: "States/Assam/KamkhyaTemple.html", state: "Assam" },
+"Kaziranga": { name: "Kaziranga", class: "Kaziranga", link: "States/Assam/Kaziranga.html", state: "Assam" },
+"MajuliIsland": { name: "Majuli Island", class: "MajuliIsland", link: "States/Assam/MajuliIsland.html", state: "Assam" },
+"ManasNationalPark": { name: "Manas National Park", class: "ManasNationalPark", link: "States/Assam/ManasNationalPark.html", state: "Assam" },
+"Sivasagr": { name: "Sivasagar", class: "Sivasagr", link: "States/Assam/Sivasagr.html", state: "Assam" },
+
+// Bihar
+"BarabarCaves": { name: "Barabar Caves", class: "BarabarCaves", link: "States/Bihar/BarabarCaves.html", state: "Bihar" },
+"Bodhgaya": { name: "Bodh Gaya", class: "Bodhgaya", link: "States/Bihar/Bodhgaya.html", state: "Bihar" },
+"Nalanda": { name: "Nalanda", class: "Nalanda", link: "States/Bihar/Nalanda.html", state: "Bihar" },
+"Patna": { name: "Patna", class: "Patna", link: "States/Bihar/Patna.html", state: "Bihar" },
+"Rajgir": { name: "Rajgir", class: "Rajgir", link: "States/Bihar/Rajgir.html", state: "Bihar" },
+
+// Tamil Nadu
+"Chennai": { name: "Chennai", class: "Chennai", link: "States/Tamil Nadu/Chennai.html", state: "Tamil Nadu" },
+"Madurai": { name: "Madurai", class: "Madurai", link: "States/Tamil Nadu/Madurai.html", state: "Tamil Nadu" },
+"Kodaikanal": { name: "Kodaikanal", class: "Kodaikanal", link: "States/Tamil Nadu/Kodaikanal.html", state: "Tamil Nadu" },
+"Ooty": { name: "Ooty", class: "Ooty", link: "States/Tamil Nadu/Ooty.html", state: "Tamil Nadu" },
+"Rameswaram": { name: "Rameswaram", class: "Rameswaram", link: "States/Tamil Nadu/Rameswaram.html", state: "Tamil Nadu" },
+"Thanjavur": { name: "Thanjavur", class: "Thanjavur", link: "States/Tamil Nadu/Thanjavur.html", state: "Tamil Nadu" },
+
+// Kerala
+"Alleppey": { name: "Alleppey", class: "Alleppey", link: "States/Kerala/Alleppey.html", state: "Kerala" },
+"Kochi": { name: "Kochi", class: "Kochi", link: "States/Kerala/Kochi.html", state: "Kerala" },
+"Kovalam": { name: "Kovalam", class: "Kovalam", link: "States/Kerala/Kovalam.html", state: "Kerala" },
+"Munnar": { name: "Munnar", class: "Munnar", link: "States/Kerala/Munnar.html", state: "Kerala" },
+"Thekkady": { name: "Thekkady", class: "Thekkady", link: "States/Kerala/Thekkady.html", state: "Kerala" },
+"Wayanad": { name: "Wayanad", class: "Wayanad", link: "States/Kerala/Wayanad.html", state: "Kerala" },
+
+// Karnataka
+"Bangalore": { name: "Bangalore", class: "Bangalore", link: "States/Karnataka/Bangalore.html", state: "Karnataka" },
+"Chikmagalur": { name: "Chikmagalur", class: "Chikmagalur", link: "States/Karnataka/Chikmagalur.html", state: "Karnataka" },
+"Coorg": { name: "Coorg", class: "Coorg", link: "States/Karnataka/Coorg.html", state: "Karnataka" },
+"Gokarna": { name: "Gokarna", class: "Gokarna", link: "States/Karnataka/Gokarna.html", state: "Karnataka" },
+"Hampi": { name: "Hampi", class: "Hampi", link: "States/Karnataka/Hampi.html", state: "Karnataka" },
+"Mysore": { name: "Mysore", class: "Mysore", link: "States/Karnataka/Mysore.html", state: "Karnataka" },
+
+// Andhra Pradesh
+"Araku": { name: "Araku", class: "Araku", link: "States/Andhra Pradesh/Araku.html", state: "Andhra Pradesh" },
+"BorraCaves": { name: "Borra Caves", class: "BorraCaves", link: "States/Andhra Pradesh/BorraCaves.html", state: "Andhra Pradesh" },
+"Lambasingi": { name: "Lambasingi", class: "Lambasingi", link: "States/Andhra Pradesh/Lambasingi.html", state: "Andhra Pradesh" },
+"Tirupati": { name: "Tirupati", class: "Tirupati", link: "States/Andhra Pradesh/Tirupati.html", state: "Andhra Pradesh" },
+"Vijayawada": { name: "Vijayawada", class: "Vijayawada", link: "States/Andhra Pradesh/Vijayawada.html", state: "Andhra Pradesh" },
+"Vizag": { name: "Vizag", class: "Vizag", link: "States/Andhra Pradesh/Vizag.html", state: "Andhra Pradesh" },
+
+// Telangana
+"Bhadrachalam": { name: "Bhadrachalam", class: "Bhadrachalam", link: "States/Telengana/Bhadrachalam.html", state: "Telengana" },
+"BogathaWaterfall": { name: "Bogatha Waterfall", class: "BogathaWaterfall", link: "States/Telengana/BogathaWaterfall.html", state: "Telengana" },
+"Hyderabad": { name: "Hyderabad", class: "Hyderabad", link: "States/Telengana/Hyderabad.html", state: "Telengana" },
+"Medak": { name: "Medak", class: "Medak", link: "States/Telengana/Medak.html", state: "Telengana" },
+"NagarjunaSagar": { name: "Nagarjuna Sagar", class: "NagarjunaSagar", link: "States/Telengana/NagarjunaSagar.html", state: "Telengana" },
+"Warangal": { name: "Warangal", class: "Warangal", link: "States/Telengana/Warangal.html", state: "Telengana" },
+
+// Pondicherry
+"Auroville": { name: "Auroville", class: "Auroville", link: "States/Pondicherry/Auroville.html", state: "Pondicherry" },
+"Chunnambar": { name: "Chunnambar", class: "Chunnambar", link: "States/Pondicherry/Chunnambar.html", state: "Pondicherry" },
+"FrenchQuarter": { name: "French Quarter", class: "FrenchQuarter", link: "States/Pondicherry/FrenchQuarter.html", state: "Pondicherry" },
+"Paradise": { name: "Paradise Beach", class: "Paradise", link: "States/Pondicherry/Paradise.html", state: "Pondicherry" },
+"PromenadeBeach": { name: "Promenade Beach", class: "PromenadeBeach", link: "States/Pondicherry/PromenadeBeach.html", state: "Pondicherry" },
+
+// Andaman & Nicobar
+"Baratang": { name: "Baratang", class: "Baratang", link: "States/Andhaman&Nicobar/Baratang.html", state: "Andaman & Nicobar" },
+"Havelock": { name: "Havelock", class: "Havelock", link: "States/Andhaman&Nicobar/Havelock.html", state: "Andaman & Nicobar" },
+"NeilIsland": { name: "Neil Island", class: "NeilIsland", link: "States/Andhaman&Nicobar/NeilIsland.html", state: "Andaman & Nicobar" },
+"PortBlair": { name: "Port Blair", class: "PortBlair", link: "States/Andhaman&Nicobar/PortBlair.html", state: "Andaman & Nicobar" },
+"Ross": { name: "Ross Island", class: "Ross", link: "States/Andhaman&Nicobar/Ross.html", state: "Andaman & Nicobar" },
+
+// Lakshadweep
+"Agatti": { name: "Agatti", class: "Agatti", link: "States/Lakshadweep/Agatti.html", state: "Lakshadweep" },
+"Bangaram": { name: "Bangaram", class: "Bangaram", link: "States/Lakshadweep/Bangaram.html", state: "Lakshadweep" },
+"Kalpeni": { name: "Kalpeni", class: "Kalpeni", link: "States/Lakshadweep/Kalpeni.html", state: "Lakshadweep" },
+"Kavaratti": { name: "Kavaratti", class: "Kavaratti", link: "States/Lakshadweep/Kavaratti.html", state: "Lakshadweep" },
+"Minicoy": { name: "Minicoy", class: "Minicoy", link: "States/Lakshadweep/Minicoy.html", state: "Lakshadweep" },
+
+// Rajasthan
+"jaipur": { name: "Jaipur", class: "jaipur", link: "States/Rajasthan/jaipur.html", state: "Rajasthan" },
+"udaipur": { name: "Udaipur", class: "udaipur", link: "States/Rajasthan/udaipur.html", state: "Rajasthan" },
+"jaiselmar": { name: "Jaiselmer", class: "jaiselmar", link: "States/Rajasthan/jaiselmar.html", state: "Rajasthan" },
+"jodhpur": { name: "Jodhpur", class: "jodhpur", link: "States/Rajasthan/jodhpur.html", state: "Rajasthan" },
+"rathambore": { name: "Ranthambore", class: "rathambore", link: "States/Rajasthan/rathambore.html", state: "Rajasthan" },
+
+// Maharashtra
+"ajanta": { name: "Ajanta", class: "ajanta", link: "States/Maharashtra/ajanta.html", state: "Maharashtra" },
+"ellora": { name: "Ellora", class: "ellora", link: "States/Maharashtra/ellora.html", state: "Maharashtra" },
+"raigad": { name: "Raigad", class: "raigad", link: "States/Maharashtra/raigad.html", state: "Maharashtra" },
+"mahabaleswar": { name: "Mahabaleshwar", class: "mahabaleswar", link: "States/Maharashtra/mahabaleswar.html", state: "Maharashtra" },
+"lonavala": { name: "Lonavala", class: "lonavala", link: "States/Maharashtra/lonavala.html", state: "Maharashtra" },
+
+// Daman & Diu
+"nagoa": { name: "Nagoa", class: "nagoa", link: "States/Daman&Diu/nagoa.html", state: "Daman & Diu" },
+"diufort": { name: "Diu Fort", class: "diufort", link: "States/Daman&Diu/diufort.html", state: "Daman & Diu" },
+"naida": { name: "Naida", class: "naida", link: "States/Daman&Diu/naida.html", state: "Daman & Diu" },
+"jampore": { name: "Jampore", class: "jampore", link: "States/Daman&Diu/jampore.html", state: "Daman & Diu" },
+"motidaman": { name: "Moti Daman", class: "motidaman", link: "States/Daman&Diu/motidaman.html", state: "Daman & Diu" },
+
+// Gujarat
+"adalaj": { name: "Adalaj", class: "adalaj", link: "States/Gujarat/adalaj.html", state: "Gujarat" },
+"saputara": { name: "Saputara", class: "saputara", link: "States/Gujarat/saputara.html", state: "Gujarat" },
+"gir": { name: "Gir", class: "gir", link: "States/Gujarat/gir.html", state: "Gujarat" },
+"tithal": { name: "Tithal", class: "tithal", link: "States/Gujarat/tithal.html", state: "Gujarat" },
+"ran": { name: "Rann of Kutch", class: "ran", link: "States/Gujarat/ran.html", state: "Gujarat" },
+
+// Goa
+"dudhsagar": { name: "Dudhsagar", class: "dudhsagar", link: "States/Goa/dudhsagar.html", state: "Goa" },
+"divar": { name: "Divar Island", class: "divar", link: "States/Goa/divar.html", state: "Goa" },
+"cathedral": { name: "Cathedral", class: "cathedral", link: "States/Goa/cathedral.html", state: "Goa" },
+"vagator": { name: "Vagator", class: "vagator", link: "States/Goa/vagator.html", state: "Goa" },
+"anjuna": { name: "Anjuna", class: "anjuna", link: "States/Goa/anjuna.html", state: "Goa" },
+
+// Madhya Pradesh
+"pachmarhi": { name: "Pachmarhi", class: "pachmarhi", link: "States/Madhyapradesh/pachmarhi.html", state: "Madhya Pradesh" },
+"bhedaghat": { name: "Bhedaghat", class: "bhedaghat", link: "States/Madhyapradesh/bhedaghat.html", state: "Madhya Pradesh" },
+"Bandhavgarh": { name: "Bandhavgarh", class: "Bandhavgarh", link: "States/Madhyapradesh/Bandhavgarh.html", state: "Madhya Pradesh" },
+"ujjain": { name: "Ujjain", class: "ujjain", link: "States/Madhyapradesh/ujjain.html", state: "Madhya Pradesh" },
+"sanchi": { name: "Sanchi", class: "sanchi", link: "States/Madhyapradesh/sanchi.html", state: "Madhya Pradesh" },
+
+// Chhattisgarh
+"chitrakote": { name: "Chitrakote", class: "chitrakote", link: "States/Chattisgarh/chitrakote.html", state: "Chhattisgarh" },
+"bhoramdeo": { name: "Bhoramdeo", class: "bhoramdeo", link: "States/Chattisgarh/bhoramdeo.html", state: "Chhattisgarh" },
+"kailash": { name: "Kailash", class: "kailash", link: "States/Chattisgarh/kailash.html", state: "Chhattisgarh" },
+"rajim": { name: "Rajim", class: "rajim", link: "States/Chattisgarh/rajim.html", state: "Chhattisgarh" },
+"mainpat": { name: "Mainpat", class: "mainpat", link: "States/Chattisgarh/mainpat.html", state: "Chhattisgarh" }
+};
+
+
+
+// ===== CONTAINER =====
+const container = document.getElementById("favoritesContainer");
+
+// ===== EMPTY =====
+if (saved.length === 0) {
+  container.innerHTML = "<p style='color:white; text-align:center;'>No favorites selected</p>";
+}
+
+// ===== GROUP =====
+const grouped = {};
+
+saved.forEach(id => {
+  const place = data[id];
+  if (!place) return;
+
+  if (!grouped[place.state]) grouped[place.state] = [];
+  grouped[place.state].push({ id, ...place });
+});
+
+// ===== RENDER =====
+for (let state in grouped) {
+  const section = document.createElement("div");
+  section.className = "state-section";
+
+  section.innerHTML = `
+    <div class="state-title">${state}</div>
+    <div class="state-grid">
+      ${grouped[state].map(place => `
+        <div class="card">
+          <div class="card-inner">
+
+            <div class="card-front ${place.class}">
+              <div class="star" data-id="${place.id}">★</div>
+              ${place.name}
+            </div>
+
+            <div class="card-back">
+              <div class="star" data-id="${place.id}">★</div>
+              <a href="${place.link}">View Info</a>
+            </div>
+
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+
+  container.appendChild(section);
+}
+
+// ===== REMOVE =====
+document.addEventListener("click", function(e) {
+  if (e.target.classList.contains("star")) {
+
+    const id = e.target.getAttribute("data-id");
+
+    let updated = JSON.parse(localStorage.getItem(key)) || [];
+    updated = updated.filter(x => x !== id);
+
+    localStorage.setItem(key, JSON.stringify(updated));
+
+    location.reload();
+  }
+});
+</script>
+
+</body>
+</html>

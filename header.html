@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\TopMenuBar.css">
+    <title>Header</title>
+</head>
+
+<body style="background-color: #0b0b0b;">
+
+<!-- Top Integrated Division -->
+<header class="header-top">
+
+    <a href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\Main2.html" 
+       class="logo-area" target="_top">
+       
+        <img src="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\Logo.jpg" alt="Logo">
+        
+        <div>
+            <div class="logo-text">DESI SAFARI</div>
+            <div class="slogan">Through Roots and Routes</div>
+        </div> 
+        
+    </a>
+
+    <nav class="nav-menu">
+        <a href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\about.html"  target="_top" >About</a>
+
+        <!-- LOGIN / LOGOUT BUTTON -->
+        <a href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\SignInPage.html" id="authBtn" target="_top">
+            Login
+        </a>
+
+        <a href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\favourites.html" target="_top">
+            Favourites
+        </a>
+    </nav>
+
+</header>
+
+<script>
+
+// ===== GET BUTTON =====
+let authBtn = document.getElementById("authBtn");
+
+// ===== GET CURRENT USER =====
+let currentUser = localStorage.getItem("currentUser");
+
+// ===== IF LOGGED IN → SHOW LOGOUT =====
+if (currentUser) {
+
+    authBtn.textContent = "Logout";
+    authBtn.href = "#";
+
+    authBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        // remove user session
+        localStorage.removeItem("currentUser");
+
+        alert("Logged out successfully");
+
+        // reload FULL frameset (VERY IMPORTANT)
+        parent.location.href = "E:\\Academics\\Group Projects\\UI Project\\india-tourism-website\\Main Files\\Main2.html";
+    });
+}
+
+</script>
+
+</body>
+</html>
