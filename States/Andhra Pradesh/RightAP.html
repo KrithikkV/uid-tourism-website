@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Andhra Pradesh Tourist Cards</title>
+<link rel="stylesheet" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\ScrollBar.css">
+<link rel="stylesheet" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\RightStyle.css">
+<link rel="stylesheet" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\CardStyle.css">
+<link rel="stylesheet" href="E:\Academics\Group Projects\UI Project\india-tourism-website\Main Files\gradient.css">
+
+<style>
+
+
+/* Card styles */
+
+body {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  padding: 50px 0;
+}
+
+/* ⭐ STAR */
+.star {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 10;
+    color: white;
+    transition: 0.3s;
+}
+
+.card-back .star {
+    color: black;
+}
+
+.star.active {
+    color: gold;
+}
+
+/* Card backgrounds */
+.card-front.Vizag {
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("Vizag.jpg");
+    background-size: cover;
+    background-position: center 45%;
+    background-repeat: no-repeat;
+}
+
+.card-front.Tirupati {
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("Tirupati.jpg");
+    background-size: cover;
+    background-position: center 45%;
+    background-repeat: no-repeat;
+}
+
+.card-front.Araku {
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("Araku.jpg");
+    background-size: cover;
+    background-position: center 45%;
+    background-repeat: no-repeat;
+}
+
+.card-front.Vijayawada {
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("Vijayawada.jpg");
+    background-size: cover;
+    background-position: center 45%;
+    background-repeat: no-repeat;
+}
+
+.card-front.BorraCaves {
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("BorraCaves.jpg");
+    background-size: cover;
+    background-position: center 45%;
+    background-repeat: no-repeat;
+}
+
+.card-front.Lambasingi {
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("Lambasingi.jpg");
+    background-size: cover;
+    background-position: center 45%;
+    background-repeat: no-repeat;
+}
+
+
+/* Card */
+.card {
+    width: 300px;
+    height: 250px;
+    perspective: 1000px;
+    position: relative;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.card-front {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.card-back {
+  background: #D2B48C;
+  color: black;
+  transform: rotateY(180deg);
+}
+
+.card-back a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.card-back a:hover {
+  text-decoration: underline;
+}
+
+/* Title */
+.right-title {
+    color: #e5e5e5;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #8B4513;
+}
+
+.right-section {
+    width: 100%;
+    padding: 20px 30px;
+}
+</style>
+</head>
+<body>
+  <div class="right-section">
+<div class="right-title">Top Spots</div>
+
+<div class="container">
+
+  <!-- Vizag -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front Vizag">
+        <div class="star" data-id="Vizag">&#9734;</div>
+        Vizag
+      </div>
+      <div class="card-back">
+        <div class="star" data-id="Vizag">&#9734;</div>
+        <a href="Vizag.html" target="content_frame">View Info</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tirupati -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front Tirupati">
+        <div class="star" data-id="Tirupati">&#9734;</div>
+        Tirupati
+      </div>
+      <div class="card-back">
+        <div class="star" data-id="Tirupati">&#9734;</div>
+        <a href="Tirupati.html" target="content_frame">View Info</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Araku -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front Araku">
+        <div class="star" data-id="Araku">&#9734;</div>
+        Araku
+      </div>
+      <div class="card-back">
+        <div class="star" data-id="Araku">&#9734;</div>
+        <a href="Araku.html" target="content_frame">View Info</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vijayawada -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front Vijayawada">
+        <div class="star" data-id="Vijayawada">&#9734;</div>
+        Vijayawada
+      </div>
+      <div class="card-back">
+        <div class="star" data-id="Vijayawada">&#9734;</div>
+        <a href="Vijayawada.html" target="content_frame">View Info</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Borra Caves -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front BorraCaves">
+        <div class="star" data-id="BorraCaves">&#9734;</div>
+        Borra Caves
+      </div>
+      <div class="card-back">
+        <div class="star" data-id="BorraCaves">&#9734;</div>
+        <a href="BorraCaves.html" target="content_frame">View Info</a>
+      </div>
+    </div>
+  </div>
+
+   <!-- Lambasingi -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front  Lambasingi">
+        <div class="star" data-id=" Lambasingi">&#9734;</div>
+         Lambasingi
+      </div>
+      <div class="card-back">
+        <div class="star" data-id="Lambasingi">&#9734;</div>
+        <a href="Lambasingi.html" target="content_frame">View Info</a>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+</div>
+
+<script>
+// ===== USER & KEY =====
+const currentUser = localStorage.getItem("currentUser");
+const key = currentUser ? "myStars_" + currentUser : null;
+
+// ===== LOAD SAVED =====
+let saved = key ? JSON.parse(localStorage.getItem(key)) || [] : [];
+
+// ===== INIT ALL STARS =====
+const stars = document.querySelectorAll(".star");
+
+stars.forEach(star => {
+  const id = star.getAttribute("data-id");
+
+  // initial fill
+  if (saved.includes(id)) {
+    star.textContent = "★";
+    star.classList.add("active");
+  } else {
+    star.textContent = "☆";
+    star.classList.remove("active");
+  }
+
+  // click
+  star.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    if (!key) {
+      alert("Please login first");
+      return;
+    }
+
+    const isActive = saved.includes(id);
+
+    if (isActive) {
+      saved = saved.filter(x => x !== id);
+    } else {
+      saved.push(id);
+    }
+
+    // update all matching stars (front/back)
+    document.querySelectorAll(`.star[data-id="${id}"]`).forEach(s => {
+      if (isActive) {
+        s.textContent = "☆";
+        s.classList.remove("active");
+      } else {
+        s.textContent = "★";
+        s.classList.add("active");
+      }
+    });
+
+    // save per user
+    localStorage.setItem(key, JSON.stringify(saved));
+  });
+});
+</script>
+
+</body>
+</html>
